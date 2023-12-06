@@ -6,7 +6,7 @@
 #    By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/30 20:17:33 by mvachera          #+#    #+#              #
-#    Updated: 2023/12/05 18:31:49 by mvachera         ###   ########.fr        #
+#    Updated: 2023/12/06 19:03:33 by mvachera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ PRINTF		= ft_printf
 
 FT_PRINTF	= ft_printf/libftprintf.a
 
-SRC     = srcs/main.c srcs/hook.c srcs/partie_juju.c srcs/utils_juju.c srcs/image.c srcs/pixel.c srcs/move.c gnl/get_next_line.c gnl/get_next_line_utils.c
+SRC     = srcs/main.c srcs/hook.c srcs/partie_juju.c srcs/utils_juju.c srcs/image.c srcs/pixel.c srcs/move.c srcs/set_map.c gnl/get_next_line.c gnl/get_next_line_utils.c
 
 OBJ	= ${SRC:.c=.o}
 

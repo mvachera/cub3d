@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:18:02 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/04 21:00:43 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:08:14 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	main(int ac, char **av)
 	else if (ac == 2 && back_track(av[1], &game) == 0)
 	{
 		set_map(&game);
+		// for (int y = 0; game.map_expand[y]; y++)
+		// 	printf("%s\n", game.map_expand[y]);
 		print_window(&game);
 	}
 	return (0);

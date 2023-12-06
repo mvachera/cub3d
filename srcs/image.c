@@ -6,47 +6,41 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:16:40 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/05 19:32:26 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/06 20:05:17 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	init_single_texture(void **img_ptr, t_game *game, char *path)
-{
-	*img_ptr = mlx_xpm_file_to_image(game->mlx, path, &game->size_x,
-			&game->size_y);
-	if (!*img_ptr)
-	{
-		ft_printf("Error\nUne image n'a pas ete initialiser correctement!\n");
-		return (1);
-	}
-	return (0);
-}
+// int	init_single_texture(void **img_ptr, t_game *game, char *path)
+// {
+// 	*img_ptr = mlx_xpm_file_to_image(game->mlx, path, &game->size_x,
+// 			&game->size_y);
+// 	if (!*img_ptr)
+// 	{
+// 		ft_printf("Error\nUne image n'a pas ete initialiser correctement!\n");
+// 		return (1);
+// 	}
+// 	return (0);
+// }
 
-int	init_texture(t_game *game)
-{
-	if (init_single_texture(&game->wall, game, "image/wall.xpm"))
-		return (1);
-	if (init_single_texture(&game->floor, game, "image/floor.xpm"))
-		return (1);
-	return (0);
-}
+// int	init_texture(t_game *game)
+// {
+// 	if (init_single_texture(&game->wall, game, "image/wall.xpm"))
+// 		return (1);
+// 	if (init_single_texture(&game->floor, game, "image/floor.xpm"))
+// 		return (1);
+// 	return (0);
+// }
 
 void	print_img(t_game *game, size_t i, size_t j)
 {
-	if (game->map[i][j] == '1')
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->wall, (j * 64),
-			(i * 64));
-	else if (game->map[i][j] == '0')
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor, (j * 64),
-			(i * 64));
-	else if (game->map[i][j] == game->start_direction)
-	{
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor, (j * 64),
-			(i * 64));
-		use_pixel(game, i * 64, j * 64);
-	}
+	if (game->map_expand[i][j] == '1')
+		mlx_pixel_put(game->mlx, game->mlx_win, j, i, 0x000000);
+	else if (game->map_expand[i][j] == '0')
+		mlx_pixel_put(game->mlx, game->mlx_win, j, i, 0xFFFFFF);
+	else if (game->map_expand[i][j] == game->start_direction)
+		mlx_pixel_put(game->mlx, game->mlx_win, j, i, 0xFFFFFF);
 }
 
 void	print_map(t_game *game)
@@ -55,10 +49,10 @@ void	print_map(t_game *game)
 	size_t	j;
 
 	i = 0;
-	while (game->map[i])
+	while (game->map_expand[i])
 	{
 		j = 0;
-		while (game->map[i][j])
+		while (game->map_expand[i][j])
 		{
 			print_img(game, i, j);
 			j++;
@@ -67,6 +61,7 @@ void	print_map(t_game *game)
 	}
 	draw_horizontal_grid(game);
 	draw_vertical_grid(game);
+	use_pixel(game, game->player_y, game->player_x);
 }
 
 void	print_window(t_game *game)
@@ -79,10 +74,10 @@ void	print_window(t_game *game)
 	}
 	game->mlx_win = mlx_new_window(game->mlx, game->width * 64, game->height
 			* 64, "cub3d");
-	if (init_texture(game))
-	{
-		return ;
-	}
+	// if (init_texture(game))
+	// {
+	// 	return ;
+	// }
 	if (game->mlx_win == NULL)
 	{
 		free(game->mlx_win);

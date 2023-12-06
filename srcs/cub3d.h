@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 17:18:28 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/05 20:09:58 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:45:58 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_game
 	void	*wall;
 	void	*floor;
 	char	**map;
+	char	**map_expand;
 
 	int		size_x;
 	int		size_y;
@@ -81,9 +82,11 @@ void		draw_ray(t_game *game, int x, int y, int size);
 void		draw_horizontal_grid(t_game *game);
 void		draw_vertical_grid(t_game *game);
 void		new_pos(t_game *game, int new_y, int new_x);
-void		move_up(t_game *game);
-void		move_left(t_game *game);
-void		move_right(t_game *game);
-void		move_down(t_game *game);
+int			move_up(t_game *game);
+int			move_left(t_game *game);
+int			move_right(t_game *game);
+int			move_down(t_game *game);
+char		**create_new_map(char **map, t_list *lst);
+void		expand_cpy(char *str, char *dst);
 
 #endif

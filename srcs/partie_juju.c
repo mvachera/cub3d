@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 16:04:50 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/05 19:27:06 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:22:05 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,11 @@ int	back_track(char *av1, t_game *game)
 	game->map = map_parser(all_line);
 	if (!game->map)
 		return (0);
+	game->map_expand = create_new_map(game->map, all_line);
+	if (!game->map_expand)
+		return (free_stash(all_line), free_map(game->map), 1);
 	free_stash(all_line);
 	return (0);
-}
-
-void	set_map(t_game *game)
-{
-	game->size_x = 64;
-	game->size_y = 64;
-	game->width = 11;
-	game->height = 9;
-	game->player_x = 6;
-	game->player_y = 5;
-	game->start_direction = 'N';
 }
 
 char	**map_parser(t_list *all_line)
