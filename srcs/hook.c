@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-int	disconnect(t_game *game)
+int	disconnect(t_map *game)
 {
 	free_map(game->map);
 	free_map(game->map_expand);
@@ -30,7 +30,7 @@ int	disconnect(t_game *game)
 	exit(EXIT_SUCCESS);
 }
 
-int	key_hook(int keycode, t_game *game)
+int	key_hook(int keycode, t_map *game)
 {
 	if (keycode == ECHAP)
 		disconnect(game);

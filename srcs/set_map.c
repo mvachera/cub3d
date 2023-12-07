@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	set_map(t_game *game)
+void	set_map(t_map *game)
 {
 	game->size_x = 64;
 	game->size_y = 64;
@@ -23,14 +23,14 @@ void	set_map(t_game *game)
 	game->start_direction = 'N';
 }
 
-char	**create_new_map(char **map, t_list *lst)
+char	**create_new_map(char **map, int nb)
 {
 	char	**dst;
 	int		mult;
 	int		i;
 	int		j;
 
-	dst = calloc(sizeof(char *), ((lstnb(lst) * 64) + 1));
+	dst = calloc(sizeof(char *), (nb * 64) + 1);
 	if (!dst)
 		return (NULL);
 	i = 0;
@@ -40,7 +40,7 @@ char	**create_new_map(char **map, t_list *lst)
 		mult = 0;
 		while (mult < 64)
 		{
-			dst[j] = calloc(sizeof(char *), ((strlen(map[i]) * 64) + 1));
+			dst[j] = calloc(sizeof(char *), ((ft_strlen(map[i]) * 64) + 1));
 			if (!dst[j])
 			{
 				while (--j >= 0)

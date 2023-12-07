@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	new_pos(t_game *game, int new_y, int new_x)
+void	new_pos(t_map *game, int new_y, int new_x)
 {
 	game->map_expand[game->player_y][game->player_x] = '0';
 	game->player_y = new_y;
@@ -20,7 +20,7 @@ void	new_pos(t_game *game, int new_y, int new_x)
 	game->map_expand[game->player_y][game->player_x] = game->start_direction;
 }
 
-int	move_up(t_game *game)
+int	move_up(t_map *game)
 {
 	int	new_y;
 
@@ -33,7 +33,7 @@ int	move_up(t_game *game)
 	return (0);
 }
 
-int	move_left(t_game *game)
+int	move_left(t_map *game)
 {
 	int	new_x;
 
@@ -46,7 +46,7 @@ int	move_left(t_game *game)
 	return (0);
 }
 
-int	move_right(t_game *game)
+int	move_right(t_map *game)
 {
 	int	new_x;
 
@@ -59,7 +59,7 @@ int	move_right(t_game *game)
 	return (0);
 }
 
-int	move_down(t_game *game)
+int	move_down(t_map *game)
 {
 	int	new_y;
 

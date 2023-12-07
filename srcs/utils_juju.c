@@ -12,53 +12,7 @@
 
 #include "cub3d.h"
 
-void	all_line_new(t_list **all_line, char *line)
-{
-	t_list	*new;
-	t_list	*last;
-	int		i;
 
-	new = malloc(sizeof(t_list));
-	if (!new)
-		return ;
-	last = get_last_node(*all_line);
-	i = 0;
-	new->next = NULL;
-	new->content = malloc(sizeof(char) * (ft_strlen(line) + 1));
-	if (!new->content)
-		return ;
-	while (line[i])
-	{
-		new->content[i] = line[i];
-		i++;
-	}
-	new->content[i] = '\0';
-	if (*all_line == NULL)
-	{
-		*all_line = new;
-		return ;
-	}
-	last->next = new;
-}
-
-void	extract_to_all_line(char *av1, t_list **all_line)
-{
-	int		fd;
-	char	*line;
-
-	fd = open(av1, O_RDONLY);
-	if (fd == -1)
-		return ;
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (line == NULL)
-			break ;
-		all_line_new(all_line, line);
-		free(line);
-	}
-	close(fd);
-}
 
 int	lstnb(t_list *all_line)
 {

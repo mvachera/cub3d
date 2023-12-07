@@ -11,84 +11,24 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	back_track(char *av1, t_game *game)
+int ft_len_tab(char **tab)
 {
-	static t_list	*all_line;
-
-	all_line = NULL;
-	extract_to_all_line(av1, &all_line);
-	if (!all_line)
-		return (0);
-	game->map = map_parser(all_line);
-	if (!game->map)
-		return (0);
-	game->map_expand = create_new_map(game->map, all_line);
-	if (!game->map_expand)
-		return (free_stash(all_line), free_map(game->map), 1);
-	free_stash(all_line);
-	return (0);
-}
-
-char	**map_parser(t_list *all_line)
-{
-	char	**map_a_parser;
-	t_list	*current;
-
-	map_a_parser = finito2(all_line);
-	if (map_a_parser == NULL)
-		return (NULL);
-	current = all_line;
-	while (current && ft_strlen(current->content) <= 1)
-		current = current->next;
-	while (current && ft_strlen(current->content) > 1)
-		current = current->next;
-	if (finito(current, all_line, map_a_parser) == 0)
-		return (NULL);
-	return (map_a_parser);
-}
-
-int	finito(t_list *current, t_list *all_line, char **map_a_parser)
-{
-	while (current)
-	{
-		if (ft_strlen(current->content) > 1)
-		{
-			ft_printf("Error\nUne ligne vide a ete trouver!\n");
-			free_stash(all_line);
-			free_map(map_a_parser);
-			return (0);
-		}
-		current = current->next;
-	}
-	return (1);
-}
-
-char	**finito2(t_list *all_line)
-{
-	t_list	*current;
-	char	**map_a_parser;
-	int		i;
+	int i;
 
 	i = 0;
-	current = all_line;
-	map_a_parser = malloc(sizeof(char *) * (lstnb(all_line) + 1));
-	if (map_a_parser == NULL)
-		return (NULL);
-	while (current && ft_strlen(current->content) <= 1)
-		current = current->next;
-	while (current && ft_strlen(current->content) > 1)
-	{
-		map_a_parser[i] = cpy(current->content);
-		if (map_a_parser[i] == NULL)
-		{
-			while (i >= 0)
-				free(map_a_parser[i--]);
-			return (NULL);
-		}
+	while (tab[i])
 		i++;
-		current = current->next;
-	}
-	map_a_parser[i] = NULL;
-	return (map_a_parser);
+	
+	return (i);
 }
+
+int	back_track(t_map *game)
+{
+	if (!game->map)
+		return (0);
+	game->map_expand = create_new_map(game->map, ft_len_tab(game->map));
+	if (!game->map_expand)
+		return (1);
+	return (0);
+}
+// all l]

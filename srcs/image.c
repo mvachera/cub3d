@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-// int	init_single_texture(void **img_ptr, t_game *game, char *path)
+// int	init_single_texture(void **img_ptr, t_map *game, char *path)
 // {
 // 	*img_ptr = mlx_xpm_file_to_image(game->mlx, path, &game->size_x,
 // 			&game->size_y);
@@ -24,7 +24,7 @@
 // 	return (0);
 // }
 
-// int	init_texture(t_game *game)
+// int	init_texture(t_map *game)
 // {
 // 	if (init_single_texture(&game->wall, game, "image/wall.xpm"))
 // 		return (1);
@@ -33,7 +33,7 @@
 // 	return (0);
 // }
 
-void	print_img(t_game *game, size_t i, size_t j)
+void	print_img(t_map *game, size_t i, size_t j)
 {
 	if (game->map_expand[i][j] == '1')
 		mlx_pixel_put(game->mlx, game->mlx_win, j, i, 0x000000);
@@ -43,7 +43,7 @@ void	print_img(t_game *game, size_t i, size_t j)
 		mlx_pixel_put(game->mlx, game->mlx_win, j, i, 0xFFFFFF);
 }
 
-void	print_map(t_game *game)
+void	print_map(t_map *game)
 {
 	size_t	i;
 	size_t	j;
@@ -64,7 +64,7 @@ void	print_map(t_game *game)
 	use_pixel(game, game->player_y, game->player_x);
 }
 
-void	print_window(t_game *game)
+void	print_window(t_map *game)
 {
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)

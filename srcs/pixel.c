@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	use_pixel(t_game *game, int y, int x)
+void	use_pixel(t_map *game, int y, int x)
 {
 	int	size;
 
@@ -21,7 +21,7 @@ void	use_pixel(t_game *game, int y, int x)
 	draw_ray(game, x, y, size);
 }
 
-void	draw_circle(t_game *game, int x, int y, int size)
+void	draw_circle(t_map *game, int x, int y, int size)
 {
 	int	color;
 	int	center[2];
@@ -49,7 +49,7 @@ void	draw_circle(t_game *game, int x, int y, int size)
 	}
 }
 
-void	draw_ray(t_game *game, int x, int y, int size)
+void	draw_ray(t_map *game, int x, int y, int size)
 {
 	int	centerx;
 	int	centery;
@@ -67,7 +67,7 @@ void	draw_ray(t_game *game, int x, int y, int size)
 	}
 }
 
-void	draw_horizontal_grid(t_game *game)
+void	draw_horizontal_grid(t_map *game)
 {
 	int	size;
 	int	color;
@@ -91,7 +91,7 @@ void	draw_horizontal_grid(t_game *game)
 	}
 }
 
-void	draw_vertical_grid(t_game *game)
+void	draw_vertical_grid(t_map *game)
 {
 	int	size;
 	int	color;
