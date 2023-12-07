@@ -101,6 +101,7 @@ void    free_tab(char **tab);
 t_map *ft_put_in_struct(char **map);
 void print_struct(t_map map);
 char **ft_spliit(char *str, char c);
+int    check_enter(t_map *game, char **tab);
 int    check_wall(char **tab);
 char	*ft_strduup(char *source);
 
