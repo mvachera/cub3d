@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvachera <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/07 18:42:16 by mvachera          #+#    #+#             */
+/*   Updated: 2023/12/07 18:42:21 by mvachera         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int    good_item(char c)
@@ -31,8 +43,6 @@ int    check_wall2(char **tab, int i, int j)
     return (1);
 }
 
-
-
 int    check_enter(t_map *game, char **tab)
 {
     int    entree;
@@ -48,8 +58,8 @@ int    check_enter(t_map *game, char **tab)
             if (tab[i[0]][i[1]] == 'N' || tab[i[0]][i[1]] == 'S'
                 || tab[i[0]][i[1]] == 'W' || tab[i[0]][i[1]] == 'E')
             {
-                game->start_line = i[0];
-                game->start_colonne = i[1];
+                game->player_y = i[0];
+                game->player_x = i[1];
                 game->start_direction = tab[i[0]][i[1]];
                 entree++;
             }

@@ -6,32 +6,11 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:16:40 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/06 20:05:17 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/07 18:27:51 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// int	init_single_texture(void **img_ptr, t_map *game, char *path)
-// {
-// 	*img_ptr = mlx_xpm_file_to_image(game->mlx, path, &game->size_x,
-// 			&game->size_y);
-// 	if (!*img_ptr)
-// 	{
-// 		ft_printf("Error\nUne image n'a pas ete initialiser correctement!\n");
-// 		return (1);
-// 	}
-// 	return (0);
-// }
-
-// int	init_texture(t_map *game)
-// {
-// 	if (init_single_texture(&game->wall, game, "image/wall.xpm"))
-// 		return (1);
-// 	if (init_single_texture(&game->floor, game, "image/floor.xpm"))
-// 		return (1);
-// 	return (0);
-// }
 
 void	print_img(t_map *game, size_t i, size_t j)
 {
@@ -74,10 +53,6 @@ void	print_window(t_map *game)
 	}
 	game->mlx_win = mlx_new_window(game->mlx, game->width * 64, game->height
 			* 64, "cub3d");
-	// if (init_texture(game))
-	// {
-	// 	return ;
-	// }
 	if (game->mlx_win == NULL)
 	{
 		free(game->mlx_win);

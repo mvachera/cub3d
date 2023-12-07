@@ -6,13 +6,11 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 21:07:32 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/04 21:00:54 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:11:31 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
 
 int	lstnb(t_list *all_line)
 {
