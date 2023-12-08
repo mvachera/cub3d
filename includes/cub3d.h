@@ -6,7 +6,7 @@
 /*   By: mvachera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:43:05 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/07 18:43:07 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/08 19:11:33 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,18 @@ void		print_map(t_map *game);
 void		print_window(t_map *game);
 void		set_map(t_map *game);
 void		use_pixel(t_map *game, int y, int x);
-void		draw_circle(t_map *game, int x, int y, int size);
-void		draw_ray(t_map *game, int x, int y, int size);
+void		draw_circle(t_map *game, int x, int y);
+void		draw_ray(t_map *game, int x, int y);
 void		draw_horizontal_grid(t_map *game);
 void		draw_vertical_grid(t_map *game);
+void	small_new_pos(t_map *game, int new_y, int new_x);
 void		new_pos(t_map *game, int new_y, int new_x);
 int			move_up(t_map *game);
 int			move_left(t_map *game);
 int			move_right(t_map *game);
 int			move_down(t_map *game);
-char		**create_new_map(char **map, int nb);
-void		expand_cpy(char *str, char *dst);
+char		**create_new_map(t_map *game, char **map, int nb);
+void		expand_cpy(t_map *game, char *str, char *dst);
 char *ft_extract_file(char *path);
 int nswe_check(char **tab);
 void    freestruc(t_map *map);

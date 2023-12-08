@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 20:59:46 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/05 20:50:29 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:40:20 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,56 +14,41 @@
 
 void	use_pixel(t_map *game, int y, int x)
 {
-	int	size;
-
-	size = 64;
-	draw_circle(game, x, y, size);
-	draw_ray(game, x, y, size);
+	draw_circle(game, x, y);
+	draw_ray(game, x, y);
 }
 
-void	draw_circle(t_map *game, int x, int y, int size)
+void	draw_circle(t_map *game, int x, int y)
 {
 	int	color;
-	int	center[2];
-	int	i[2];
-	int	dx;
-	int	dy;
+	int	i;
+	int	j;
 
 	color = 0x00FF00;
-	center[0] = x + size / 2;
-	center[1] = y + size / 2;
-	i[0] = 0;
-	while (i[0] < size)
+	i = x - 4;
+	while (i <= x + 4)
 	{
-		i[1] = 0;
-		while (i[1] < size)
+		j = y - 4;
+		while (j <= y + 4)
 		{
-			dx = center[0] - (x + i[0]);
-			dy = center[1] - (y + i[1]);
-			if (dx * dx + dy * dy <= (size / 4) * (size / 4))
-				mlx_pixel_put(game->mlx, game->mlx_win, x + i[0], y + i[1],
-					color);
-			++i[1];
+			mlx_pixel_put(game->mlx, game->mlx_win, i, j, color);
+			++j;
 		}
-		++i[0];
+		++i;
 	}
 }
 
-void	draw_ray(t_map *game, int x, int y, int size)
+void	draw_ray(t_map *game, int x, int y)
 {
-	int	centerx;
-	int	centery;
 	int	raycolor;
 	int	k;
 
-	centerx = x + size / 2;
-	centery = y + size / 2;
 	raycolor = 0xFF0000;
 	k = 0;
-	while (k < centery)
+	while (k < 20)
 	{
-		mlx_pixel_put(game->mlx, game->mlx_win, centerx, centery - k, raycolor);
-		++k;
+		mlx_pixel_put(game->mlx, game->mlx_win, x, y - k, raycolor);
+		k++;
 	}
 }
 

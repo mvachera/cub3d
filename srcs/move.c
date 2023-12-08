@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 17:57:23 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/06 19:46:23 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/08 19:10:35 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	new_pos(t_map *game, int new_y, int new_x)
 {
-	game->map_expand[game->player_y][game->player_x] = '0';
 	game->player_y = new_y;
 	game->player_x = new_x;
-	game->map_expand[game->player_y][game->player_x] = game->start_direction;
 }
 
 int	move_up(t_map *game)
 {
 	int	new_y;
 
-	new_y = game->player_y - 3;
-	if (game->map_expand[new_y][game->player_x] == '1')
+	new_y = game->player_y - 5;
+	if (game->map_expand[game->player_y - 1][game->player_x] == '1')
 		return (0);
+	else if (game->map_expand[new_y][game->player_x] == '1')
+		small_new_pos(game, new_y, game->player_x);
 	else
 		new_pos(game, new_y, game->player_x);
 	print_map(game);
@@ -37,9 +37,11 @@ int	move_left(t_map *game)
 {
 	int	new_x;
 
-	new_x = game->player_x - 3;
-	if (game->map_expand[game->player_y][new_x] == '1')
+	new_x = game->player_x - 5;
+	if (game->map_expand[game->player_y][game->player_x - 1] == '1')
 		return (0);
+	else if (game->map_expand[game->player_y][new_x] == '1')
+		small_new_pos(game, game->player_y, new_x);
 	else
 		new_pos(game, game->player_y, new_x);
 	print_map(game);
@@ -50,9 +52,11 @@ int	move_right(t_map *game)
 {
 	int	new_x;
 
-	new_x = game->player_x + 3;
-	if (game->map_expand[game->player_y][new_x] == '1')
+	new_x = game->player_x + 5;
+	if (game->map_expand[game->player_y][game->player_x + 1] == '1')
 		return (0);
+	else if (game->map_expand[game->player_y][new_x] == '1')
+		small_new_pos(game, game->player_y, new_x);
 	else
 		new_pos(game, game->player_y, new_x);
 	print_map(game);
@@ -63,9 +67,11 @@ int	move_down(t_map *game)
 {
 	int	new_y;
 
-	new_y = game->player_y + 3;
-	if (game->map_expand[new_y][game->player_x] == '1')
+	new_y = game->player_y + 5;
+	if (game->map_expand[game->player_y + 1][game->player_x] == '1')
 		return (0);
+	else if (game->map_expand[new_y][game->player_x] == '1')
+		small_new_pos(game, new_y, game->player_x);
 	else
 		new_pos(game, new_y, game->player_x);
 	print_map(game);

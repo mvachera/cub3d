@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 21:42:23 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/06 20:00:19 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/08 19:13:42 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,44 @@ int	key_hook(int keycode, t_map *game)
 	if (keycode == ECHAP)
 		disconnect(game);
 	if (keycode == UP || keycode == 65362)
-		mlx_loop_hook(game->mlx, move_up, game);
+		move_up(game);
 	if (keycode == LEFT || keycode == 65361)
-		mlx_loop_hook(game->mlx, move_left, game);
+		move_left(game);
 	if (keycode == DOWN || keycode == 65364)
-		mlx_loop_hook(game->mlx, move_down, game);
+		move_down(game);
 	if (keycode == RIGHT || keycode == 65363)
-		mlx_loop_hook(game->mlx, move_right, game);
+		move_right(game);
 	return (0);
+}
+
+void	small_new_pos(t_map *game, int new_y, int new_x)
+{
+	if (game->player_y != new_y)
+	{
+		if (game->player_y > new_y)
+		{
+			while (game->map_expand[new_y][game->player_x] == '1')
+				new_y++;
+		}
+		else
+		{
+			while (game->map_expand[new_y][game->player_x] == '1')
+				new_y--;
+		}
+	}
+	else if (game->player_x != new_x)
+	{
+		if (game->player_x > new_x)
+		{
+			while (game->map_expand[game->player_y][new_x] == '1')
+				new_x++;
+		}
+		else
+		{
+			while (game->map_expand[game->player_y][new_x] == '1')
+				new_x--;
+		}
+	}
+	game->player_y = new_y;
+	game->player_x = new_x;
 }

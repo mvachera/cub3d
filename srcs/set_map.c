@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:06:37 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/07 18:40:11 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:17:45 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,16 @@ void	set_map(t_map *game)
 	game->size_y = 64;
 	nb_line(game, game->map);
 	longest_line(game, game->map);
-	printf("player_y = %d, player_x = %d\n", game->player_y, game->player_x);
+	// printf("player_y = %d, player_x = %d\n", game->player_y, game->player_x);
 	game->player_x *= 64;
 	game->player_y *= 64;
+	game->player_x += 32;
+	game->player_y += 32;
+	// game->map_expand[game->player_y][game->player_x] = game->start_direction;
+	// printf("la : ligne = %d, colonne = %d, char = %c\n", game->player_y, game->player_x, game->start_direction);
 }
 
-char	**create_new_map(char **map, int nb)
+char	**create_new_map(t_map *game, char **map, int nb)
 {
 	char	**dst;
 	int		mult;
@@ -73,7 +77,7 @@ char	**create_new_map(char **map, int nb)
 					free(dst[j]);
 				return (free(dst), NULL);
 			}
-			expand_cpy(map[i], dst[j]);
+			expand_cpy(game, map[i], dst[j]);
 			j++;
 			mult++;
 		}
@@ -82,7 +86,7 @@ char	**create_new_map(char **map, int nb)
 	return (dst);
 }
 
-void	expand_cpy(char *str, char *dst)
+void	expand_cpy(t_map *game, char *str, char *dst)
 {
 	int		mult;
 	int		i;
@@ -95,6 +99,8 @@ void	expand_cpy(char *str, char *dst)
 		mult = 0;
 		while (mult < 64)
 		{
+			if (str[i] == game->start_direction)
+				str[i] = '0';
 			dst[j] = str[i];
 			j++;
 			mult++;

@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:16:40 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/07 18:27:51 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:53:17 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	print_img(t_map *game, size_t i, size_t j)
 		mlx_pixel_put(game->mlx, game->mlx_win, j, i, 0x000000);
 	else if (game->map_expand[i][j] == '0')
 		mlx_pixel_put(game->mlx, game->mlx_win, j, i, 0xFFFFFF);
-	else if (game->map_expand[i][j] == game->start_direction)
-		mlx_pixel_put(game->mlx, game->mlx_win, j, i, 0xFFFFFF);
+	// else if (game->map_expand[i][j] == game->start_direction)
+	// 	mlx_pixel_put(game->mlx, game->mlx_win, j, i, 0xFFFFFF);
 }
 
 void	print_map(t_map *game)
