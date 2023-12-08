@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvachera <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:43:05 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/08 19:11:33 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/08 20:55:20 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,14 @@
 # define ECHAP 65307
 
 
-
+typedef struct s_key
+{
+	int 		w;
+	int 		s;
+	int 		d;
+	int 		a;
+	int			q;
+}	t_key;
 
 typedef struct s_map
 {
@@ -59,7 +66,8 @@ typedef struct s_map
 
 	int		player_x;
 	int		player_y;
-
+	
+	t_key	key;
 }				t_map;
 
 void		all_line_new(t_list **all_line, char *line);
@@ -77,7 +85,6 @@ int			init_single_texture(void **img_ptr, t_map *game, char *path);
 int			key_hook(int keycode, t_map *game);
 int			disconnect(t_map *game);
 int			init_texture(t_map *game);
-void		print_img(t_map *game, size_t i, size_t j);
 void		print_map(t_map *game);
 void		print_window(t_map *game);
 void		set_map(t_map *game);
@@ -105,5 +112,10 @@ char **ft_spliit(char *str, char c);
 int    check_enter(t_map *game, char **tab);
 int    check_wall(char **tab);
 char	*ft_strduup(char *source);
+
+//
+int move(t_map *game);
+int	key_press(int keycode, t_map *game);
+int	key_release(int keycode, t_map *game);
 
 #endif

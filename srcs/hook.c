@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 21:42:23 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/08 19:13:42 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/08 20:46:11 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,52 @@ int	key_hook(int keycode, t_map *game)
 		move_down(game);
 	if (keycode == RIGHT || keycode == 65363)
 		move_right(game);
+	return (0);
+}
+
+int move(t_map *game)
+{
+	if (game->key.q == 1)
+		disconnect(game);
+	if (game->key.w == 1)
+		move_up(game);
+	if (game->key.a == 1)
+		move_left(game);
+	if (game->key.s == 1)
+		move_down(game);
+	if (game->key.d == 1)
+		move_right(game);
+	print_map(game);
+	return (0);
+
+}
+
+int	key_press(int keycode, t_map *game)
+{
+	if (keycode == ECHAP)
+		game->key.q = 1;
+	if (keycode == UP || keycode == 65362)
+		game->key.w = 1;
+	if (keycode == LEFT || keycode == 65361)
+		game->key.a = 1;
+	if (keycode == DOWN || keycode == 65364)
+		game->key.s = 1;
+	if (keycode == RIGHT || keycode == 65363)
+		game->key.d = 1;
+	return (0);
+}
+int	key_release(int keycode, t_map *game)
+{
+	if (keycode == ECHAP)
+		game->key.q = 0;
+	if (keycode == UP || keycode == 65362)
+		game->key.w = 0;
+	if (keycode == LEFT || keycode == 65361)
+		game->key.a = 0;
+	if (keycode == DOWN || keycode == 65364)
+		game->key.s = 0;
+	if (keycode == RIGHT || keycode == 65363)
+		game->key.d = 0;
 	return (0);
 }
 

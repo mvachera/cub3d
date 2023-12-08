@@ -87,4 +87,10 @@ char		*ft_strduup(char *source);
 void		nb_line(t_map *game, char **tab);
 void		longest_line(t_map *game, char **tab);
 
+//
+int move(t_map *game);
+int	key_press(int keycode, t_map *game);
+int	key_release(int keycode, t_map *game);
+
+
 #endif

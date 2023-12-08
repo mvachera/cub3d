@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 17:57:23 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/08 19:10:35 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/08 21:04:12 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	move_up(t_map *game)
 {
 	int	new_y;
 
-	new_y = game->player_y - 5;
+	new_y = game->player_y - 1;
 	if (game->map_expand[game->player_y - 1][game->player_x] == '1')
 		return (0);
 	else if (game->map_expand[new_y][game->player_x] == '1')
@@ -37,7 +37,7 @@ int	move_left(t_map *game)
 {
 	int	new_x;
 
-	new_x = game->player_x - 5;
+	new_x = game->player_x - 1;
 	if (game->map_expand[game->player_y][game->player_x - 1] == '1')
 		return (0);
 	else if (game->map_expand[game->player_y][new_x] == '1')
@@ -52,7 +52,7 @@ int	move_right(t_map *game)
 {
 	int	new_x;
 
-	new_x = game->player_x + 5;
+	new_x = game->player_x + 1;
 	if (game->map_expand[game->player_y][game->player_x + 1] == '1')
 		return (0);
 	else if (game->map_expand[game->player_y][new_x] == '1')
@@ -67,7 +67,7 @@ int	move_down(t_map *game)
 {
 	int	new_y;
 
-	new_y = game->player_y + 5;
+	new_y = game->player_y + 1;
 	if (game->map_expand[game->player_y + 1][game->player_x] == '1')
 		return (0);
 	else if (game->map_expand[new_y][game->player_x] == '1')
