@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:16:40 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/13 16:50:13 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/13 18:19:04 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	print_window(t_map *game)
 		return ;
 	}
 	print_map(game);
-	
 	ft_memset(&game->key, 0, sizeof(t_key));
 	mlx_loop_hook(game->mlx, &move, game);
 	mlx_hook(game->mlx_win, 17, (1L << 17), disconnect, game);

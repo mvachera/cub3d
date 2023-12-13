@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:06:37 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/08 17:17:45 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/13 20:35:35 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	set_map(t_map *game)
 	game->player_y *= 64;
 	game->player_x += 32;
 	game->player_y += 32;
+	game->player_direction = 0;
 	// game->map_expand[game->player_y][game->player_x] = game->start_direction;
 	// printf("la : ligne = %d, colonne = %d, char = %c\n", game->player_y, game->player_x, game->start_direction);
 }

@@ -1,7 +1,7 @@
 NAME			= 	cub3D
 
 SRCS_NAMES 		=	main.c extract.c check_map_content.c check_map.c put_in_struct.c utils.c ft_spliit.c \
-					hook.c image.c move.c  partie_juju.c pixel.c set_map.c	utils_juju.c \
+					hook.c image.c move.c  partie_juju.c pixel.c set_map.c	utils_juju.c rotate.c \
 
 LIBFT			=	libft.a
 

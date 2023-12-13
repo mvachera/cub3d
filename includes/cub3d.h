@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:43:05 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/08 20:55:20 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/13 18:31:58 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "../minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <math.h>
 
 # define UP 119
 # define DOWN 115
@@ -29,6 +30,7 @@
 # define CAM_LEFT 65361
 # define ECHAP 65307
 
+# define PI 3.14159265358979323846
 
 typedef struct s_key
 {
@@ -36,7 +38,9 @@ typedef struct s_key
 	int 		s;
 	int 		d;
 	int 		a;
-	int			q;
+	int		q;
+	int		c_l;
+	int		c_r;
 }	t_key;
 
 typedef struct s_map
@@ -66,7 +70,8 @@ typedef struct s_map
 
 	int		player_x;
 	int		player_y;
-	
+
+	double	player_direction;
 	t_key	key;
 }				t_map;
 
@@ -90,7 +95,7 @@ void		print_window(t_map *game);
 void		set_map(t_map *game);
 void		use_pixel(t_map *game, int y, int x);
 void		draw_circle(t_map *game, int x, int y);
-void		draw_ray(t_map *game, int x, int y);
+void		draw_ray(t_map *game, int x, int y, double angle);
 void		draw_horizontal_grid(t_map *game);
 void		draw_vertical_grid(t_map *game);
 void	small_new_pos(t_map *game, int new_y, int new_x);
@@ -117,5 +122,7 @@ char	*ft_strduup(char *source);
 int move(t_map *game);
 int	key_press(int keycode, t_map *game);
 int	key_release(int keycode, t_map *game);
+void rotate_left(t_map *game);
+void rotate_right(t_map *game);
 
 #endif

@@ -45,6 +45,7 @@ typedef struct s_map
 	int		player_x;
 	int		player_y;
 
+	double	player_direction;
 }			t_map;
 
 void		all_line_new(t_list **all_line, char *line);
@@ -90,8 +91,10 @@ char		*ft_strduup(char *source);
 void		nb_line(t_map *game, char **tab);
 void		longest_line(t_map *game, char **tab);
 
-int move(t_map *game);
-int	key_press(int keycode, t_map *game);
-int	key_release(int keycode, t_map *game);
+int			move(t_map *game);
+int			key_press(int keycode, t_map *game);
+int			key_release(int keycode, t_map *game);
+void		rotate_left(t_game *game);
+void		rotate_right(t_game *game);
 
 #endif

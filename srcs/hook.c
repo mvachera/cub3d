@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 21:42:23 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/13 16:49:39 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/13 18:21:29 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,21 @@ int	disconnect(t_map *game)
 	exit(EXIT_SUCCESS);
 }
 
-int	key_hook(int keycode, t_map *game)
-{
-	if (keycode == ECHAP)
-		disconnect(game);
-	if (keycode == UP || keycode == 65362)
-		move_up(game);
-	if (keycode == LEFT || keycode == 65361)
-		move_left(game);
-	if (keycode == DOWN || keycode == 65364)
-		move_down(game);
-	if (keycode == RIGHT || keycode == 65363)
-		move_right(game);
-	return (0);
-}
+// int	key_hook(int keycode, t_map *game)
+// {
+// 	printf("%d\n", keycode);
+// 	if (keycode == ECHAP)
+// 		disconnect(game);
+// 	if (keycode == UP || keycode == 65362)
+// 		move_up(game);
+// 	if (keycode == LEFT || keycode == 65361)
+// 		move_left(game);
+// 	if (keycode == DOWN || keycode == 65364)
+// 		move_down(game);
+// 	if (keycode == RIGHT || keycode == 65363)
+// 		move_right(game);
+// 	return (0);
+// }
 
 int move(t_map *game)
 {
@@ -57,7 +58,10 @@ int move(t_map *game)
 		move_down(game);
 	if (game->key.d == 1)
 		move_right(game);
-	// print_map(game);
+	if (game->key.c_l == 1)
+		rotate_left(game);
+	if (game->key.c_r == 1)
+		rotate_right(game);
 	return (0);
 
 }
@@ -66,28 +70,37 @@ int	key_press(int keycode, t_map *game)
 {
 	if (keycode == ECHAP)
 		game->key.q = 1;
-	if (keycode == UP || keycode == 65362)
+	if (keycode == UP)
 		game->key.w = 1;
-	if (keycode == LEFT || keycode == 65361)
+	if (keycode == LEFT)
 		game->key.a = 1;
-	if (keycode == DOWN || keycode == 65364)
+	if (keycode == DOWN)
 		game->key.s = 1;
-	if (keycode == RIGHT || keycode == 65363)
+	if (keycode == RIGHT)
 		game->key.d = 1;
+	if (keycode == CAM_LEFT)
+		game->key.c_l = 1;
+	if (keycode == CAM_RIGHT)
+		game->key.c_r = 1;
 	return (0);
 }
+
 int	key_release(int keycode, t_map *game)
 {
 	if (keycode == ECHAP)
 		game->key.q = 0;
-	if (keycode == UP || keycode == 65362)
+	if (keycode == UP)
 		game->key.w = 0;
-	if (keycode == LEFT || keycode == 65361)
+	if (keycode == LEFT)
 		game->key.a = 0;
-	if (keycode == DOWN || keycode == 65364)
+	if (keycode == DOWN)
 		game->key.s = 0;
-	if (keycode == RIGHT || keycode == 65363)
+	if (keycode == RIGHT)
 		game->key.d = 0;
+	if (keycode == CAM_LEFT)
+		game->key.c_l = 0;
+	if (keycode == CAM_RIGHT)
+		game->key.c_r = 0;
 	return (0);
 }
 

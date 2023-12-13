@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 17:57:23 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/13 17:15:13 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/13 20:33:33 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,60 +20,68 @@ void	new_pos(t_map *game, int new_y, int new_x)
 
 int	move_up(t_map *game)
 {
-	int	new_y;
+	double	new_y;
+	double	new_x;
 
-	new_y = game->player_y - 2;
-	if (game->map_expand[game->player_y - 1][game->player_x] == '1')
+	new_y = game->player_y - 2 * cos(game->player_direction);
+	new_x = game->player_x + 2 * sin(game->player_direction);
+	if (game->map_expand[(int)round(new_y)][(int)round(new_x)] == '1')
 		return (0);
-	else if (game->map_expand[new_y][game->player_x] == '1')
-		small_new_pos(game, new_y, game->player_x);
+	// else if (game->map_expand[(int)new_y][(int)new_x] == '1')
+		// small_new_pos(game, new_y, new_x);
 	else
-		new_pos(game, new_y, game->player_x);
+		new_pos(game, (int)round(new_y), (int)round(new_x));
 	print_map(game);
 	return (0);
 }
 
 int	move_left(t_map *game)
 {
-	int	new_x;
+	double	new_x;
+	double	new_y;
 
-	new_x = game->player_x - 2;
-	if (game->map_expand[game->player_y][game->player_x - 1] == '1')
+	new_x = game->player_x - 2 * cos(game->player_direction);
+	new_y = game->player_y - 2 * sin(game->player_direction);
+	if (game->map_expand[(int)round(new_y)][(int)round(new_x)] == '1')
 		return (0);
-	else if (game->map_expand[game->player_y][new_x] == '1')
-		small_new_pos(game, game->player_y, new_x);
+	// else if (game->map_expand[(int)new_y][(int)new_x] == '1')
+		// small_new_pos(game, new_y, new_x);
 	else
-		new_pos(game, game->player_y, new_x);
+		new_pos(game, (int)round(new_y), (int)round(new_x));
 	print_map(game);
 	return (0);
 }
 
 int	move_right(t_map *game)
 {
-	int	new_x;
+	double	new_x;
+	double	new_y;
 
-	new_x = game->player_x + 2;
-	if (game->map_expand[game->player_y][game->player_x + 1] == '1')
+	new_x = game->player_x + 2 * cos(game->player_direction);
+	new_y = game->player_y + 2 * sin(game->player_direction);
+	if (game->map_expand[(int)round(new_y)][(int)round(new_x)] == '1')
 		return (0);
-	else if (game->map_expand[game->player_y][new_x] == '1')
-		small_new_pos(game, game->player_y, new_x);
+	// else if (game->map_expand[(int)new_y][(int)new_x] == '1')
+		// small_new_pos(game, new_y, new_x);
 	else
-		new_pos(game, game->player_y, new_x);
+		new_pos(game, (int)round(new_y), (int)round(new_x));
 	print_map(game);
 	return (0);
 }
 
 int	move_down(t_map *game)
 {
-	int	new_y;
+	double	new_y;
+	double	new_x;
 
-	new_y = game->player_y + 2;
-	if (game->map_expand[game->player_y + 1][game->player_x] == '1')
+	new_y = game->player_y + 2 * cos(game->player_direction);
+	new_x = game->player_x - 2 * sin(game->player_direction);
+	if (game->map_expand[(int)round(new_y)][(int)round(new_x)] == '1')
 		return (0);
-	else if (game->map_expand[new_y][game->player_x] == '1')
-		small_new_pos(game, new_y, game->player_x);
+	// else if (game->map_expand[(int)new_y][(int)new_x] == '1')
+		// small_new_pos(game, new_y, new_x);
 	else
-		new_pos(game, new_y, game->player_x);
+		new_pos(game, (int)round(new_y), (int)round(new_x));
 	print_map(game);
 	return (0);
 }
