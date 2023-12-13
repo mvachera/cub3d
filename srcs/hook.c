@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 21:42:23 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/08 20:46:11 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/13 16:49:39 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int move(t_map *game)
 		move_down(game);
 	if (game->key.d == 1)
 		move_right(game);
-	print_map(game);
+	// print_map(game);
 	return (0);
 
 }

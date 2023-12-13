@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:16:40 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/08 21:15:48 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/13 16:50:13 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	print_map(t_map *game)
 	int *data = (int *)mlx_get_data_addr(img, &r, &r, &r);
 	int **buff = malloc(sizeof(int*) * game->height * 64);
 	// printf("MAXH = %i | MAXW = %i\n", game->height * 64, game->width * 64);
-	for (int w = 0; w < game->width * 64; w++)
+	for (int w = 0; w < game->height * 64; w++)
 	{
 		buff[w] = malloc(sizeof(int) * game->width * 64);
 
@@ -66,6 +66,12 @@ void	print_map(t_map *game)
 	mlx_put_image_to_window(game->mlx, game->mlx_win, img, 0, 0);
 	// ft_memset(buff, 0, game->width * 64 * game->height * 64);
 	mlx_destroy_image(game->mlx, img);
+	for (int w = 0; w < game->height * 64; w++)
+	{
+		free(buff[w]);
+
+	}
+	free(buff);
 	// draw_horizontal_grid(game);
 	// draw_vertical_grid(game);
 	use_pixel(game, game->player_y, game->player_x);
@@ -92,6 +98,8 @@ void	print_window(t_map *game)
 		free_map(game->map);
 		return ;
 	}
+	print_map(game);
+	
 	ft_memset(&game->key, 0, sizeof(t_key));
 	mlx_loop_hook(game->mlx, &move, game);
 	mlx_hook(game->mlx_win, 17, (1L << 17), disconnect, game);

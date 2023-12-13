@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 20:59:46 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/08 17:40:20 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/13 16:48:16 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	draw_ray(t_map *game, int x, int y)
 	k = 0;
 	while (k < 20)
 	{
-		mlx_pixel_put(game->mlx, game->mlx_win, x, y - k, raycolor);
+		mlx_pixel_put(game->mlx, game->mlx_win, x + k, y, raycolor);
 		k++;
 	}
 }

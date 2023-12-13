@@ -16,6 +16,9 @@
 # define CAM_LEFT 65361
 # define ECHAP 65307
 
+# define PI 3.14159265358979323846
+# define ROTATION_SPEED 0.1
+
 typedef struct s_map
 {
 	char	*NO;
@@ -87,10 +90,8 @@ char		*ft_strduup(char *source);
 void		nb_line(t_map *game, char **tab);
 void		longest_line(t_map *game, char **tab);
 
-//
 int move(t_map *game);
 int	key_press(int keycode, t_map *game);
 int	key_release(int keycode, t_map *game);
-
 
 #endif
