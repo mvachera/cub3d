@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 20:59:46 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/13 20:43:05 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:19:17 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,30 @@ void	draw_circle(t_map *game, int x, int y)
 }
 
 void	draw_ray(t_map *game, int x, int y, double angle)
-{
-	int		raycolor;
-	int		k;
-	double	dir_x;
-	double	dir_y;
+{	
+	int raycolor;
+    double dir_x;
+    double dir_y;
 
-	raycolor = 0xFF0000;
-	angle = fmod(angle, 2 * PI);
-	dir_x = cos(angle);
-	dir_y = sin(angle);
-	k = 0;
-	while (k < 20)
-	{
-		mlx_pixel_put(game->mlx, game->mlx_win, (int)round(x + k * dir_x),
-			(int)round(y + k * dir_y), raycolor);
-		k++;
-	}
+    raycolor = 0xFF0000;
+    angle = fmod(angle, 2 * PI);
+    dir_x = cos(angle - PI / 2);
+    dir_y = sin(angle - PI / 2);
+
+    int k = 0;
+    while ((int)round(y + k * dir_y) >= 0 && (int)round(x + k * dir_x) >= 0
+        && game->map_expand[(int)round(y + k * dir_y)] != NULL
+		&& game->map_expand[(int)round(y + k * dir_y)][(int)round(x + k * dir_x)])
+    {
+        // Calcul des coordonnées du pixel suivant le rayon
+        int next_x = (int)round(x + k * dir_x);
+        int next_y = (int)round(y + k * dir_y);
+
+        // Affichage du pixel
+        mlx_pixel_put(game->mlx, game->mlx_win, next_x, next_y, raycolor);
+
+        k++;
+    }
 }
 
 void	draw_horizontal_grid(t_map *game)
