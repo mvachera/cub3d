@@ -6,7 +6,7 @@
 /*   By: mvachera <mvachera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 20:59:46 by mvachera          #+#    #+#             */
-/*   Updated: 2023/12/14 17:19:17 by mvachera         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:33:26 by mvachera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	draw_circle(t_map *game, int x, int y)
 
 void	draw_ray(t_map *game, int x, int y, double angle)
 {	
+	int	next_x;
+	int	next_y;
 	int raycolor;
     double dir_x;
     double dir_y;
@@ -54,13 +56,9 @@ void	draw_ray(t_map *game, int x, int y, double angle)
         && game->map_expand[(int)round(y + k * dir_y)] != NULL
 		&& game->map_expand[(int)round(y + k * dir_y)][(int)round(x + k * dir_x)])
     {
-        // Calcul des coordonnées du pixel suivant le rayon
-        int next_x = (int)round(x + k * dir_x);
-        int next_y = (int)round(y + k * dir_y);
-
-        // Affichage du pixel
+        next_x = (int)round(x + k * dir_x);
+        next_y = (int)round(y + k * dir_y);
         mlx_pixel_put(game->mlx, game->mlx_win, next_x, next_y, raycolor);
-
         k++;
     }
 }
