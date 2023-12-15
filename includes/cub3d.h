@@ -78,7 +78,9 @@ typedef struct s_map
     char		start_direction;
     void	*mlx;
 	void	*mlx_win;
-
+	int		hauteur;
+	int		largeur;
+	char	*wall_path[4];
 	void	*wall;
 	void	*floor;
 	char	**map_expand;
@@ -88,11 +90,6 @@ typedef struct s_map
 	int 	last_input;
 	int		pre_last_input;
 	int 	current_input; 
-	// t_gc		*gc;
-	// t_mlx		mlx;
-	// t_parsing	parsing;
-	// t_player	player;
-	// t_map		map;
 	t_ray		ray[FOV];
 	float		ray_line[FOV];
 	float		ray_offset[FOV];
