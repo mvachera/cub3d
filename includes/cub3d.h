@@ -29,6 +29,7 @@
 # define CAM_RIGHT 65363
 # define CAM_LEFT 65361
 # define ECHAP 65307
+# define FOV 60
 
 # define PI 3.14159265358979323846
 
@@ -42,6 +43,26 @@ typedef struct s_key
 	int		c_l;
 	int		c_r;
 }	t_key;
+
+typedef struct s_subray
+{
+	int		wall;
+	float	collision_x;
+	float	collision_y;
+	float 	distance;
+} t_subray;
+
+typedef struct s_ray
+{
+	t_subray	ray_hor;
+	t_subray	ray_ver;
+	int		wall;
+	float	collision_x;
+	float	collision_y;
+	float 	distance;
+	double	angle;
+}	t_ray;
+
 
 typedef struct s_map
 {
@@ -61,7 +82,22 @@ typedef struct s_map
 	void	*wall;
 	void	*floor;
 	char	**map_expand;
-
+	char		*path;
+	int			nb_of_line;
+	char		**file;
+	int 	last_input;
+	int		pre_last_input;
+	int 	current_input; 
+	// t_gc		*gc;
+	// t_mlx		mlx;
+	// t_parsing	parsing;
+	// t_player	player;
+	// t_map		map;
+	t_ray		ray[FOV];
+	float		ray_line[FOV];
+	float		ray_offset[FOV];
+	int			decalage_x;
+	int			decalage_y;
 	int		size_x;
 	int		size_y;
 
@@ -75,6 +111,13 @@ typedef struct s_map
 	t_key	key;
 }				t_map;
 
+float modulo(float value, float mod_value);
+float conv_rad(float angle);
+void	set_ray(t_ray *to_set, t_subray to_copy);
+float	ft_find_collision(t_map *data, t_ray *ray, float (*raycast)(t_map*, t_ray*, float));
+float	ft_raycasting_vertical(t_map *data, t_ray *ray, float to_add);
+float	ft_raycasting_horizontal(t_map *data, t_ray *ray, float to_add);
+void	ft_raycasting(t_map *data);
 void		all_line_new(t_list **all_line, char *line);
 void		extract_to_all_line(char *av1, t_list **all_line);
 int			back_track(t_map *game);

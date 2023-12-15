@@ -58,3 +58,18 @@ void	free_map(char **map_a_parser)
 	}
 	free(map_a_parser);
 }
+
+float modulo(float value, float mod_value)
+{
+	if (value > mod_value)
+		return (modulo(value - mod_value, mod_value));
+	if (value < 0)
+		return (modulo(value + mod_value, mod_value));
+	return (value);
+}
+
+float conv_rad(float angle)
+
+{
+	return (modulo(0- modulo(angle,(2 * PI)), 2 * PI));
+}

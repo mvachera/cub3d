@@ -68,7 +68,7 @@ int main(int argc, char **argv)
     tab_map = ft_split(s_line, '\n');
     if (!nswe_check(tab_map))
         return (1);
-    free_tab(tab_map);
+    // free_tab(tab_map);
     tab_map = ft_spliit(s_line, '\n');
     map = struct_init();
     map = ft_put_in_struct(tab_map);
